@@ -1,0 +1,44 @@
+<section class="main-cont">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="login_cont">
+          <div class="img">
+            <img src="assets/images/logo.png" alt="" width="150">
+          </div>
+          
+          <div class="d-flex justify-content-center form_container">
+            <form [formGroup]= "loginForm" (ngSubmit)="login()">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input id="username" type="text" name="username" class="form-control" [formControl]="usernameCtrl" placeholder="username" required>
+              </div>
+              <div *ngIf="usernameCtrl.invalid && (usernameCtrl.dirty || usernameCtrl.touched)">
+                <small *ngIf="usernameCtrl.errors.required">
+                  Username can not be blank.
+                </small>
+                <small *ngIf="usernameCtrl.errors.minlength">
+                  Username is required to be at least 3 characters.
+                </small>
+              </div>
+              <div class="input-group" [ngClass]= "usernameCtrl.invalid && (usernameCtrl.dirty || usernameCtrl.touched) ? '' : 'martop20'">
+                <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+                <input id="password" type="password" class="form-control" [formControl] = "passwordCtrl" name="password" placeholder="Password" required>
+              </div>
+              <div *ngIf="passwordCtrl.invalid && (passwordCtrl.dirty || passwordCtrl.touched)">
+                <small *ngIf="passwordCtrl.errors.required">
+                  Password can not be blank.
+                </small>
+              </div>
+              <div class="d-flex justify-content-center mb-1 login_container" [ngClass]= "passwordCtrl.invalid && (passwordCtrl.dirty || passwordCtrl.touched) ? '' : 'mt-6'">
+                <button type="submit" name="button" class="btn login_btn" [disabled]="!loginForm.valid">Login</button>
+              </div>
+            </form>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
